@@ -1,4 +1,80 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container-fluid mt-3">
+  <div class="row">
 
-<%= link_to "最終確認用ボタン", "#", class: "btn btn-primary" %>
+    <div class="col-sm-12 col-md-2 offset-md-1">
+      <table class="table text-center table-hover">
+        <thead class="table-dark">
+          <th>Genre Search</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#" class="link-dark">焙煎機</a></td>
+          </tr>
+          <tr>
+            <td><a href="#" class="link-dark">ミル</a></td>
+          </tr>
+          <tr>
+            <td><a href="#" class="link-dark">ハンドドリップ</a></td>
+          </tr>
+          <tr>
+            <td><a href="#" class="link-dark">コーヒーメーカー</a></td>
+          </tr>
+          <tr>
+            <td><a href="#" class="link-dark">コーヒーサイフォン</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-12 col-md-9">
+
+      <!--カルーセルここから-->
+      <div id="carouselExampleCaptions" class="carousel slide w-75 mx-auto" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag 'image1.jpg', class: "d-block w-100 rounded" %>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>静かなひと時を...</h5>
+              <p>都会の喧騒から離れた静かな空間で、ゆったりと流れる時間をお楽しみください</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <%= image_tag 'image2.jpg', class: "d-block w-100 rounded" %>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>木のぬくもりを感じる、こだわりつくされた店内</h5>
+              <p>テーブルやチェアなどのインテリアからライティングに至るまで、細部までこだわりつくされた空間をお楽しみください</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <%= image_tag 'image3.jpg', class: "d-block w-100 rounded" %>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>世界中から取り寄せた店内焙煎のスペシャリティコーヒー</h5>
+              <p>オーナーが世界のコーヒー農園を訪れて、選びぬいたコーヒーを店内焙煎にてご提供します</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
