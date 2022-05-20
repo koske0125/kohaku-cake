@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :public, path: "" do
     get '/' => 'homes#top'
     get '/about' => 'homes#about'
+    get '/my_page' => 'customers#show'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
