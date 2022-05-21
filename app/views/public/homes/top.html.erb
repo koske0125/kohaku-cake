@@ -7,21 +7,11 @@
           <th>Genre Search</th>
         </thead>
         <tbody>
+          <% @Genres.each do |genre| %>
           <tr>
-            <td><a href="#" class="link-dark">焙煎機</a></td>
+            <td><%= link_to "#", class: "link-dark" do %><%= genre.name %><% end %></td>
           </tr>
-          <tr>
-            <td><a href="#" class="link-dark">ミル</a></td>
-          </tr>
-          <tr>
-            <td><a href="#" class="link-dark">ハンドドリップ</a></td>
-          </tr>
-          <tr>
-            <td><a href="#" class="link-dark">コーヒーメーカー</a></td>
-          </tr>
-          <tr>
-            <td><a href="#" class="link-dark">コーヒーサイフォン</a></td>
-          </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -77,49 +67,18 @@
       <h2 class="mt-3"><p class="text-start">New Items</p></h2>
 
       <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2 g-4">
+        <% @items.each do |item| %>
         <div class="col">
           <div class="card h-100 text-white bg-dark">
-            <%= image_tag 'madleine.jpg', class: "card-img-top", size: "300x300" %>
+            <%= image_tag item.get_image, class: "card-img-top", size: "300x300" %>
             <div class="card-body">
-              <h5 class="card-title">桜のマドレーヌ</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text text-end"><%= link_to public_item_path(item) do %><button class="btn btn-outline-light">Show</button><% end %></p>
             </div>
           </div>
         </div>
-
-        <div class="col">
-          <div class="card h-100 text-white bg-dark">
-            <%= image_tag 'cheesecake.jpg', class: "card-img-top", size: "300x300" %>
-            <div class="card-body">
-              <h5 class="card-title">生チーズケーキ</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100 text-white bg-dark">
-            <%= image_tag 'creampuff.jpg', class: "card-img-top", size: "300x300" %>
-            <div class="card-body">
-              <h5 class="card-title">シュークリーム</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100 text-white bg-dark">
-            <%= image_tag 'chocolatecake.jpg', class: "card-img-top", size: "300x300" %>
-            <div class="card-body">
-              <h5 class="card-title">チョコレートケーキ</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <%= link_to public_items_path, class: "link-dark mt-3" do %><p class="text-end">Show All Items</p><% end %>
-
+        <% end %>
     </div>
+    <div class="text-end mt-3"><%= link_to public_items_path, class: "link-dark mt-3" do %><p class="text-end">Show All Items</p><% end %></div>
   </div>
 </div>
