@@ -29,15 +29,15 @@
         <td><%= @customer.email %></td>
       </tr>
     </table>
-    <div class="text-end"><a href="#"><button class="btn btn-dark px-3">Edit Profile</button></a></div>
+    <div class="text-end"><%= link_to edit_public_customer_path(@customer) do %><button class="btn btn-dark px-3">Edit Profile</button></a><% end %></div>
 
     <table class="table table-borderless" width="50%">
       <tr>
-        <td class="text-center align-middle" width="30%"><h3>配送先</h3></td>
+        <td class="text-center align-middle" width="30%"><h3 class="my-auto">配送先</h3></td>
         <td><a href="#"><button class="btn btn-dark px-3">Show Index</button></a></td>
       </tr>
       <tr>
-        <td class="text-center"><h3>注文履歴</h3></td>
+        <td class="text-center"><h3 class="my-auto">注文履歴</h3></td>
         <td><a href="#"><button class="btn btn-dark px-3">Show Index</button></a></td>
       </tr>
     </table>

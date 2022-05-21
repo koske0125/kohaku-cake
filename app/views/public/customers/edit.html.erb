@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="col-sm-12 col-md-6 col-lg-5 col-xl-3 mx-auto mt-3">
+    <h2>Edit Profile</h2>
+    <%= form_with model:@customer, url: public_customer_path, method: :patch do |f| %>
+    <div class="mb-3 mt-3">
+      <%= f.label :last_name, "名字" %>
+      <%= f.text_field :last_name, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :first_name, "名前" %>
+      <%= f.text_field :first_name, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :last_name_kana, "名字(フリガナ)" %>
+      <%= f.text_field :last_name_kana, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :first_name_kana, "名前(フリガナ)" %>
+      <%= f.text_field :first_name_kana, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+      <%= f.text_field :postal_code, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :address, "住所" %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :telephone_number, "電話番号(ハイフンなし)" %>
+      <%= f.text_field :telephone_number, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.submit "Update Profile", class: "btn btn-dark px-3" %>
+    </div>
+    <% end %>
+  </div>
+</div>
