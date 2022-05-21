@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 mx-auto">
+      <div class="row row-cols-2"><div><h2 class="text-start">Items Index</h2></div><div class="text-end"><%= link_to new_admin_item_path do %><button class="btn btn-dark rounded-circle p-0" style="width:2rem;height:2rem;"><i class="fas fa-plus"></i></button><% end %></div></div>
+      <table class="table">
+        <thead class="text-center">
+          <tr>
+            <th>Item ID</th>
+            <th>Item name</th>
+            <th>tax excluded price</th>
+            <th>Genre</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <% @items.each do |item| %>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.price %></td>
+            <td><%= item.genre.name %></td>
+            <td><% if item.is_active == true %><span class="text-success">販売中</span><% else %><span class="text-muted">販売停止中</span><% end %></td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
