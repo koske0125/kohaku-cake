@@ -6,30 +6,42 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <span class="navbar-text ms-5">Welcome to Nagano Coffee</span>
+    <span class="navbar-text ms-5"><% if customer_signed_in? %>Welcome <%= current_customer.last_name %> さん<% elsif admin_signed_in? %>Welcome Owner<% else %>Welcome to Nagano Coffee<% end %></span>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <%= link_to public_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fa-solid fa-house me-1"></i>Home</button><% end %>
+          <% if admin_signed_in? %>
+            <%= link_to admin_items_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fas fa-coffee me-1"></i>Items</button><% end %>
+          <% else %>
+            <%= link_to public_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fa-solid fa-house me-1"></i>Home</button><% end %>
+          <% end %>
         </li>
 
         <li class="nav-item">
           <% if customer_signed_in? %>
             <%= link_to "/customers/my_page", class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fa-solid fa-user me-1"></i>My Page</button><% end %>
+          <% elsif admin_signed_in? %>
+            <%= link_to admin_customers_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fas fa-user me-1"></i>Customers</button><% end %>
           <% else %>
             <%= link_to public_about_path, class: "nav-link" do %><button type ="button" class="btn btn-outline-light px-3"><i class="fas fa-lightbulb me-1"></i>About</button><% end %>
           <% end %>
         </li>
 
         <li class="nav-item">
-          <%= link_to public_items_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fas fa-coffee me-1"></i>Items</button><% end %>
+          <% if admin_signed_in? %>
+            <%= link_to admin_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fas fa-scroll"></i>Orders</button><% end %>
+          <% else %>
+            <%= link_to public_items_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fas fa-coffee me-1"></i>Items</button><% end %>
+          <% end %>
         </li>
 
         <li class="nav-item">
           <% if customer_signed_in? %>
             <%= link_to public_cart_items_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fas fa-shopping-cart"></i>Cart</button><% end %>
+          <% elsif admin_signed_in? %>
+            <%= link_to admin_genres_path, class: "nav-link" do %> <button type="button" class="btn btn-outline-light px-3"><i class="fas fa-list-alt"></i>Genres</button><% end %>
           <% else%>
             <%= link_to new_customer_registration_path, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fas fa-user-plus"></i>Sign up</button><% end %>
           <% end %>
@@ -39,6 +51,8 @@
           <% if customer_signed_in? %>
             <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link" do %>
               <button type="button" class="btn btn-outline-light px-3"><i class="fas fa-sign-out-alt me-1"></i>Sign out</button><% end %>
+          <% elsif admin_signed_in? %>
+            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %><button type="button" class="btn btn-outline-light px-3"><i class="fas fa-sign-out-alt me-1"></i>Sign out</button><% end %>
           <% else %>
             <%= link_to new_customer_session_path , class: "nav-link" do %>
               <button type="button" class="btn btn-outline-light px-3"><i class="fas fa-sign-in-alt me-1"></i>Sign in</button><% end %>

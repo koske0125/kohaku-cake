@@ -35,7 +35,7 @@
       <%= f.text_field :telephone_number, class: "form-control" %>
     </div>
     <div class="mb-3">
-      <%= f.submit "Update Profile", class: "btn btn-dark px-3" %>
+      <%= f.submit "Update Profile", class: "btn btn-dark px-3" %><%= link_to public_customers_unsubscribe_path do %><button class="btn btn-danger px-3 ms-3">Unsubscribe</button><% end %>
     </div>
     <% end %>
   </div>
