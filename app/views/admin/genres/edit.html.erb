@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 mx-auto">
+      <h2 class="text-start">Genre Edit</h2>
+      <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
+      <table class="table table-borderless align-middle">
+        <tr>
+          <td class="text-start">ジャンル名：</td>
+          <td><%= f.text_field :name, class: "form-control" %></td>
+          <td class="text-start"><%= f.submit "Update", class: "btn btn-dark px-3" %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
