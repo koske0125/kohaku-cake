@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 mx-auto mt-3">
+    <div class="d-flex">
+      <div><h2>Cart Items</h2></div>
+      <div class="ms-auto"><%= link_to public_cart_items_destroy_all_path, method: :delete do %><button class="btn btn-danger px-3">Delete All</button><% end %></div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Items</th>
+          <th>Price(intax)</th>
+          <th>amount</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= image_tag cart_item.item.get_image, size: "50x50" %> <%= cart_item.item.name %></td>
+          <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+          <td><%= cart_item.amount %></td>
+          <td><%= cart_item.subtotal %></td>
+          <td><%= link_to public_cart_item_path(cart_item), method: :delete do %><button class="btn btn-danger">Delete</button><% end %></td>
+        </tr>
+        <% @total_price += cart_item.subtotal %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

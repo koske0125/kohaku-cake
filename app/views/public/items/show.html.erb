@@ -18,6 +18,18 @@
         </table>
       </div>
     </div>
-    <div class="text-center"><%= link_to edit_admin_item_path(@item.id) do %><button class="btn btn-dark px-4 me-3">Edit Item</button><% end %><%= link_to :back do %><button class="btn btn-danger px-4">Back</button><% end %></div>
+    <div class="text-center">
+      <% if @item.is_active == false %>
+        <button class="btn btn-success disabled px-4 me-3">Sold Out</button><%= link_to :back do %><button class="btn btn-danger px-4">Back</button><% end %>
+      <% else %>
+        <%= form_with model: @cart_item, url: public_cart_items_path, method: :post, local: true do |f| %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+        <%= f.select :amount, *[1..20] %>
+        <%= f.submit "Add Cart", class: "btn btn-success px-4 me-3", name: nil %><%= link_to :back do %><button class="btn btn-danger px-4">Back</button><% end %>
+        <% end %>
+      <% end %>
     </div>
+
+  </div>
 </div>
