@@ -59,10 +59,9 @@
           <% end %>
         </li>
       </ul>
-      <form class="d-flex ms-5">
-        <input class="form-control me-2" type="search" placeholder="Item Search..." aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <%= form_with url: public_items_path, method: :get, class: "d-flex ms-5" do |f| %>
+      <%= f.search_field :search, class: "form-control me-2", placeholder: "Item Search..." %>
+      <%= f.submit "Search", class: "btn btn-outline-success" %><% end %>
     </div>
   </div>
 </nav>

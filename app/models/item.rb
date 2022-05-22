@@ -24,4 +24,12 @@ class Item < ApplicationRecord
     (self.price * 1.10).round
   end
 
+  def self.search(search)
+    if search
+      Item.where(['name LIKE?', "#{search}%"])
+    else
+      Item.all
+    end
+  end
+
 end
