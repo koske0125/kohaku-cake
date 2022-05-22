@@ -7,9 +7,12 @@
           <th>Genre Search</th>
         </thead>
         <tbody>
+          <tr>
+            <td><%= link_to public_items_path, class: "link-dark" do %>All Items<% end %></td>
+          </tr>
           <% @Genres.each do |genre| %>
           <tr>
-            <td><%= link_to "#", class: "link-dark" do %><%= genre.name %><% end %></td>
+            <td><%= link_to "/items?genre_id=#{genre.id}", class: "link-dark" do %><%= genre.name %><% end %></td>
           </tr>
           <% end %>
         </tbody>

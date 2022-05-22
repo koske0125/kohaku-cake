@@ -1,0 +1,41 @@
+<div class="container-fluid mt-3">
+  <div class="row">
+
+    <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2 offset-xl-2">
+      <table class="table text-center table-hover mt-3">
+        <thead class="table-dark">
+          <th>Genre Search</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to public_items_path, class: "link-dark" do %>All Items<% end %></td>
+          </tr>
+          <% @genres.each do |genre| %>
+          <tr>
+            <td><%= link_to "/items?genre_id=#{genre.id}", class: "link-dark" do %><%= genre.name %><% end %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-12 col-md-8 col-lg-9 col-xl-6">
+
+      <h2 class="mt-3"><p class="text-start"><% if @genre.presence %><%= @genre.name %><% else %>Items<% end %>(全<%= @items.count %>件)</p></h2>
+
+      <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2 g-4">
+        <% @items.each do |item| %>
+        <div class="col">
+          <div class="card h-100 text-white bg-dark">
+            <%= image_tag item.get_image, class: "card-img-top", size: "300x300" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text h5">¥<%= item.add_tax_price.to_s(:delimited) %></p>
+              <p class="card-text text-end"><%= link_to public_item_path(item) do %><button class="btn btn-outline-light">Show</button><% end %></p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>

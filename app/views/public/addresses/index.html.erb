@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 mx-auto mt-3">
+    <h2>Address Index/Add</h2>
+    <h3 class="mt-3">Add Address</h3>
+    <%= form_with model: @address, url: public_addresses_path do |f| %>
+    <div class="row row-cols-2 g-2">
+      <div class="w-25 text-end"><%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "mt-1 me-5" %></div><div class="w-75"><%= f.text_field :postal_code, class: "form-control" %></div>
+      <div class="w-25 text-end"><%= f.label :address, "住所", class: "mt-1 me-5" %></div><div class="w-75"><%= f.text_field :address, class: "form-control" %></div>
+      <div class="w-25 text-end"><%= f.label :name, "宛名", class: "mt-1 me-5" %></div><div class="w-75"><%= f.text_field :name, class: "form-control" %></div>
+    </div>
+    <div class="text-center mx-auto mt-3">
+      <%= f.submit "Add Address", class: "btn btn-dark px-4", name: nil %>
+    </div>
+    <% end %>
+
+    <table class="table mx-auto mt-3 text-center">
+      <thead class="text-center">
+        <tr>
+          <th width="15%">Postal Code</th>
+          <th width="45%">Address</th>
+          <th widht="10%">Name</th>
+          <th widht="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @addresses.each do |address| %>
+        <tr>
+          <td><%= address.postal_code %></td>
+          <td><%= address.address %></td>
+          <td><%= address.name %></td>
+          <td><%= link_to edit_public_address_path(address), class: "btn btn-dark me-2" do %>Edit<% end %><%= link_to public_address_path(address), class: "btn btn-danger me-2", method: :delete, data: { confirm: "削除してもよろしいですか？" } do %>Delete<% end %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -34,7 +34,7 @@ namespace :public, path: "" do
   delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :customers, only: [:edit, :update]
   resources :items, only: [:index, :show]
-  resources :send_addresses, only: [:index, :edit, :create, :update, :destroy]
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :orders, only: [:new, :create, :index, :show]
   resources :cart_items, only: [:index, :update, :destroy, :create]
   end
