@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 mx-auto mt-3">
+    <h2>Order Confirm</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">商品名</th>
+          <th class="text-center">単価</th>
+          <th class="text-center">数量</th>
+          <th class="text-center">小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= image_tag cart_item.item.get_image, size: "50x50" %> <%= cart_item.item.name %></td>
+          <td class="text-center"><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+          <td class="text-center"><%= cart_item.amount %></td>
+          <td class="text-center"><%= cart_item.subtotal %></td>
+        </tr>
+        <% @total_price += cart_item.subtotal %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="d-flex mt-5">
+      <div class="w-75">
+        <strong>支払い方法</strong> <% if @order.payment_method == "credit_card" %>　クレジットカード　<% else %>　銀行振込 <% end %> <br>
+        <strong>お届け先</strong>
+        <% if @address_select == 0 %> 〒<%= @customer.postal_code %> <%= @customer.address %> <%= @customer.last_name %><%= @customer.first_name %>
+        <% elsif @address_select == 1 %> <%= @send_address.full_address %>
+        <% else %> 〒<%= @order.postal_code %> <%= @order.address %> <%= @order.name %> <% end %>
+      </div>
+
+      <div class="w-25 ms-auto">
+        <table class="table">
+          <tr>
+            <th>送料</th>
+            <td><%= @order.shipping_cost %></td>
+          </tr>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @total_price %></td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td><%= @total_price + @order.shipping_cost %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="mx-auto text-center">
+      <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
+      <%= f.hidden_field :address_select, :value => @address_select %>
+      <%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
+      <%= f.hidden_field :total_payment, :value => @total_price + @order.shipping_cost %>
+      <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+      <% if @address_select == 1 %><%= f.hidden_field :address_id, :value => @send_address.id %><% end %>
+      <% if @address_select == 2 %><%= f.hidden_field :postal_code, :value => @order.postal_code %><%= f.hidden_field :address, :value => @order.address %><%= f.hidden_field :name, :value => @order.name %><% end %>
+      <%= f.submit "注文を確定する" , class: "btn btn-success" %>
+      <% end %>
+    </div>
+
+
+
+</div>
