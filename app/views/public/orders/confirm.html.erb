@@ -23,8 +23,8 @@
       </tbody>
     </table>
 
-    <div class="d-flex mt-5">
-      <div class="w-75">
+    <div class="d-flex mt-5 align-items-center">
+      <div class="w-75 text-center">
         <strong>支払い方法</strong> <% if @order.payment_method == "credit_card" %>　クレジットカード　<% else %>　銀行振込 <% end %> <br>
         <strong>お届け先</strong>
         <% if @address_select == 0 %> 〒<%= @customer.postal_code %> <%= @customer.address %> <%= @customer.last_name %><%= @customer.first_name %>
