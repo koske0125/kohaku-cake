@@ -6,32 +6,47 @@
     </div>
     <table class="table">
       <thead>
-        <tr>
-          <th>Items</th>
-          <th>Price(intax)</th>
-          <th>amount</th>
-          <th>Subtotal</th>
-          <th></th>
+        <tr class="text-center">
+          <th width="40%">Items</th>
+          <th width="15%">Price(intax)</th>
+          <th width="20%">amount</th>
+          <th width="15%">Subtotal</th>
+          <th width="10%"></th>
         </tr>
       </thead>
       <tbody>
         <% @cart_items.each do |cart_item| %>
         <tr>
           <td><%= image_tag cart_item.item.get_image, size: "50x50" %> <%= cart_item.item.name %></td>
-          <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
-          <td>
+          <td class="text-center"><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+          <td class="text-center">
             <%= form_with model: cart_item, url: public_cart_item_path(cart_item), method: :patch, local: true do |f| %>
             <%= f.hidden_field :item_id, :value => cart_item.item_id %>
             <%= f.hidden_field :customer_id, :value => current_customer.id %>
             <%= f.select :amount, *[1..20] %>
             <%= f.submit "変更", class: "btn btn-success px-4 me-3", name: nil %><% end %>
             </td>
-          <td><%= cart_item.subtotal %></td>
-          <td><%= link_to public_cart_item_path(cart_item), method: :delete do %><button class="btn btn-danger">Delete</button><% end %></td>
+          <td class="text-center"><%= cart_item.subtotal %></td>
+          <td class="text-center"><%= link_to public_cart_item_path(cart_item), method: :delete do %><button class="btn btn-danger">Delete</button><% end %></td>
         </tr>
         <% @total_price += cart_item.subtotal %>
         <% end %>
       </tbody>
     </table>
+
+    <div class="d-flex">
+      <div><%= link_to public_items_path do %><button class="btn btn-primary px-3">Continue Shopping</button><% end %></div>
+      <div class="ms-auto">
+        <table class="table">
+          <tr class="text-center">
+            <th class="text-center">Total Price</th>
+            <td>¥ <%= @total_price.to_s(:delimited) %> -</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="text-center"><%= link_to public_items_path do %><button class="btn btn-success px-3">Next</button><% end %></div>
+
   </div>
 </div>
