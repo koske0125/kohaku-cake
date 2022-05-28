@@ -24,7 +24,7 @@
       <% else %>
         <%= form_with model: @cart_item, url: public_cart_items_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+        <% if customer_signed_in? %><%= f.hidden_field :customer_id, :value => current_customer.id %><% end %>
         <%= f.select :amount, *[1..20] %>
         <%= f.submit "Add Cart", class: "btn btn-success px-4 me-3", name: nil %><%= link_to :back do %><button class="btn btn-danger px-4">Back</button><% end %>
         <% end %>
